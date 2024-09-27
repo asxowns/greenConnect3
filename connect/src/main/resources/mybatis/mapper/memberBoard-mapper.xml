@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.connect.dao.IBoardDao">
+	<select id="getCategoryList">
+	select * from category
+	</select>
+	<select id="getCategoryName">
+	select categoryName from category where categoryNo = #{categoryNo}
+	</select>
+	<select id="getUserName">
+	select * from user where username = #{username}
+	</select>
+	<insert id="registBoard">
+	insert into board (title, content, categoryno, regDate, view, username) value(#{board.title},#{board.content},#{board.categoryNo},#{board.regDate},#{board.view},#{board.username})
+	</insert>
+	<insert id="registFileBoard">
+	insert into board (title, content, etc, categoryno, regDate, view, username) value(#{board.title},#{board.content},#{board.etc}, #{board.categoryNo},#{board.regDate},#{board.view},#{board.username})
+	</insert>
+	<select id="getBoardList">
+	select * from board where categoryNo = #{categoryNo}
+	</select>
+	<select id="getBoardDetail">
+	select * from board where bno = #{bno}
+	</select>
+	<update id="boardViewCnt">
+	update board set view = #{view} where bno = #{bno}
+	</update>
+	<select id="getLikeState">
+	select * from `like` where username = #{username} and bno = #{bno}
+	</select>
+	<select id="getBoardTotalLike">
+	select count(*) from `like` where bno = #{bno} and likeState = 1
+	</select>
+	<select id="getBoardLikeCheck">
+	select count(*) from `like` where bno = #{bno} and username = #{username}
+	</select>
+	<insert id="regBoardLike">
+	insert into `like` (username, bno, likeState) values (#{like.username}, #{like.bno}, #{like.likeState})
+	</insert>
+	<update id="updateBoardLike">
+	update `like` set likeState = #{likeState} where username = #{username} and bno = #{bno}
+	</update>
+	<select id="getReplyList">
+	select * from reply where bno = #{bno}
+	</select>
+	<insert id="regReply">
+	insert into reply (replyContent, replyDate, username, bno) values (#{reply.replyContent}, #{reply.replyDate}, #{reply.username}, #{reply.bno})
+	</insert>
+	
+</mapper>

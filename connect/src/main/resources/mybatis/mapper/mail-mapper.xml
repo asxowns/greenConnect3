@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.connect.dao.EmailDao">
+
+	<insert id="insertVerification" parameterType="com.green.connect.dto.Email">
+    INSERT INTO email (email, username, verification_code, expiration_time, verified)
+    VALUES (#{email}, #{username}, #{verificationCode}, #{expirationTime}, #{verified})
+</insert>
+
+<select id="getVerificationByEmail" resultType="com.green.connect.dto.Email">
+    SELECT 
+        eid,
+        email,
+        username,
+        verification_code AS verificationCode,
+        expiration_time AS expirationTime,
+        verified
+    FROM email 
+    WHERE email = #{email}
+</select>
+
+<update id="updateVerification" parameterType="com.green.connect.dto.Email">
+    UPDATE email
+    SET verification_code = #{verificationCode},
+        expiration_time = #{expirationTime},
+        verified = #{verified}
+    WHERE email = #{email}
+</update>
+
+<select id="getEmailsByUsername" resultType="com.green.connect.dto.Email">
+    SELECT * FROM email WHERE username = #{username}
+</select>
+
+</mapper>

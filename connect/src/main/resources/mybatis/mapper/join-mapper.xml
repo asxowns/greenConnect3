@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.connect.dao.JoinDao">
+	
+	<insert id="insertUser" parameterType="com.green.connect.dto.User">
+        INSERT INTO user (username, password, name, role, email, tel, birth, levelno)
+        VALUES (#{username}, #{password}, #{name}, #{role}, #{email}, #{tel}, #{birth}, 1)
+    </insert>
+
+    <select id="countByEmail" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM user WHERE email = #{email}
+    </select>
+    
+   	<select id="getUsername">
+   		select username from user
+   	</select>
+	
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.connect.dao.MypageDao">
+
+	<!-- 내가 쓴 게시글 -->
+	<select id="myBoardList" resultType="com.green.connect.dto.Board">
+		select * from board where username = #{username}
+	</select>
+	
+	<!-- 내가 쓴 댓글 -->
+	<select id="myReplyList" resultType="com.green.connect.dto.Reply">
+		select * from reply where username = #{username}
+	</select>
+	
+	<!-- 내가 좋아요한 게시글 -->
+	<select id="myLikeBoardList" resultType="com.green.connect.dto.Like">
+		select * from `like` where username = #{username}
+	</select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.connect.dao.LevelupDao">
+
+	<select id="levelupList">
+		select * from levelup
+	</select>
+	
+	<select id="getLevelup">
+		select * from levelup where levelno = #{levelno}
+	</select>
+	
+	<update id="updateLevelUp">
+		update levelup set levelName = #{levelName}, levelIcon = #{levelIcon},
+		rank = #{rank}, description = #{description} where levelno = #{levelno}
+	</update>
+	
+	<insert id="insertLevelUp" parameterType="com.green.connect.dto.LevelUp">
+		insert into levelup (levelName, levelIcon, rank, description)
+		values (#{levelName}, #{levelIcon}, #{rank}, #{description})
+	</insert>
+	
+	<delete id="deleteLevelUp">
+		delete from levelup where levelno = #{levelno}
+	</delete>
+	
+	<select id="getRank">
+		select rank from levelup
+	</select>
+
+</mapper>
