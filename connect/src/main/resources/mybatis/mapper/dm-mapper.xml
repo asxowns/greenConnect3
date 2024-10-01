@@ -17,4 +17,8 @@
 		select * from dm where reciveUser = #{reciveUser}
 	</select>
 	
+	<select id="dmDetail">
+		select * from dm where dno = #{dno}
+	</select>
+	
 </mapper>

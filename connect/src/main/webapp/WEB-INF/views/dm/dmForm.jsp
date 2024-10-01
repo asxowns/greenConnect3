@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,72 +45,78 @@ body {
 	font-weight: 500;
 }
 
-.reciveUser{
-	height:40px;
-	display:flex;
-	align-items:center;
-	border-bottom:1px solid #eee;
-	gap:20px;
-}
-.reciveUser h3{
-	font-size:14px;
-	color:#333;
-	margin-left:20px;
-	font-weight:500;
-}
-.reciveUser input[type="text"]{
-	height:25px;
-	font-size:14px;
-	color:#666;
-	font-weight:300;
-	border:0px;
-	border-bottom:1px solid #ccc;
-	padding-left:5px;
-	box-sizing:border-box;
+.reciveUser {
+	height: 40px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #eee;
+	gap: 20px;
 }
 
-.msgArea{
-	width:100%;
-	text-align:center;
-	margin-top:20px;
+.reciveUser h3 {
+	font-size: 14px;
+	color: #333;
+	margin-left: 20px;
+	font-weight: 500;
 }
-.msgArea textarea{
-	width:360px;
-	height:200px;
-	border:1px solid #ccc;
-	resize:none;
-	padding:5px;
-	box-sizing:border-box;
+
+.reciveUser input[type="text"] {
+	height: 25px;
+	font-size: 14px;
+	color: #666;
+	font-weight: 300;
+	border: 0px;
+	border-bottom: 1px solid #ccc;
+	padding-left: 5px;
+	box-sizing: border-box;
 }
-.msgArea input[type="submit"]{
-	width:70px;
-	height:30px;
-	background:#0091DB;
-	border:0px;
-	border-radius:5px;
-	color:#fff;
+
+.msgArea {
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.msgArea textarea {
+	width: 360px;
+	height: 200px;
+	border: 1px solid #ccc;
+	resize: none;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.msgArea input[type="submit"] {
+	width: 70px;
+	height: 30px;
+	background: #0091DB;
+	border: 0px;
+	border-radius: 5px;
+	color: #fff;
 	font-family: "Pretendard Variable", Pretendard;
-	cursor:pointer;
-	margin-top:20px;
+	cursor: pointer;
+	margin-top: 20px;
 }
-.msgArea button{
-	width:50px;
-	height:30px;
-	background:#eee;
-	border:1px solid #ccc;
-	border-radius:5px;
-	color:#333;
+
+.msgArea button {
+	width: 50px;
+	height: 30px;
+	background: #eee;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	color: #333;
 	font-family: "Pretendard Variable", Pretendard;
 }
 </style>
 </head>
 <body>
-<div id="dmHead">
+	<div id="dmHead">
 		<ul>
 			<li>
 				<h1>쪽지</h1>
 			</li>
-			<li><a href="dmWindow"> <img src="../resource/img/dm_back.png">
+			<li><a href="dmWindow"> <img
+					src="../resource/img/dm_back.png">
 			</a></li>
 		</ul>
 	</div>
@@ -118,19 +124,21 @@ body {
 	<form action="sendDm" method="POST">
 		<div class="reciveUser">
 			<h3>받는 사람</h3>
-			<p><input type="text" name="reciveUser"></p>
+			<p>
+				<input type="text" name="reciveUser">
+			</p>
 		</div>
 
 		<div class="msgArea">
 			<textarea name="content"></textarea>
 			<input type="submit" value="보내기">
 			<button>취소</button>
+		</div>
 	</form>
-	</div>
-	
-	
-	
-	
-	
+
+
+
+
+
 </body>
 </html>
