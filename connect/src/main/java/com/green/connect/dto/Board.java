@@ -31,5 +31,24 @@ public class Board {
 		this.username = username;
 	}
 	
+	//첨부파일 수정x
+	public Board(int bno, String title, String content, int categoryNo) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.content = content;
+		this.categoryNo = categoryNo;
+	}
+	
+	//첨부파일 수정o
+	public Board(int bno, String title, String content, String etc, int categoryNo) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.content = content;
+		this.etc = etc;
+		this.categoryNo = categoryNo;
+	}
+	
 	
 }
