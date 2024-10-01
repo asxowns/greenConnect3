@@ -1,10 +1,14 @@
 package com.green.connect.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.green.connect.dao.DmDao;
 import com.green.connect.dto.DM;
@@ -33,11 +37,26 @@ public class dmController {
 		dm.setDate(new Date());
 		dm.setState(1);
 		
-		dm.setSendUser("qwe");
+		dm.setSendUser("user1");
 
 		dao.sendDm(dm);
 
 		return "dm/dmWindow";
+	}
+	
+	
+	@GetMapping("/myReciveDm")
+	@ResponseBody
+	public List<DM> myReciveDm(@RequestParam("reciveUser") String reciveUser) {
+		
+		return dao.myReciveDm(reciveUser);
+	}
+	
+	@GetMapping("/mySendDm")
+	@ResponseBody
+	public List<DM> mySendDm(@RequestParam("sendUser") String sendUser){
+		
+		return dao.mySendDm(sendUser);
 	}
 
 }
