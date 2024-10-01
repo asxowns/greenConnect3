@@ -56,12 +56,18 @@ section {
 					
 				</tbody>
 			</table>
+			<a href="../certification/form" onclick="popup(this.href); return false;">수료증 인증</a>
+			
 		</section>
 	</main>
 
 	<footer>
 		<%@include file="../about/footer.jsp"%>
 	</footer>
-
+	<script>
+	function popup(url){
+		window.open(url, '_blank', 'width=200,height=200,top=100,left=200,resizable=yes,scrollbars=yes');
+	}
+	</script>
 </body>
 </html>

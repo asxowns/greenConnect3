@@ -24,6 +24,16 @@
 	<select id="getBoardDetail">
 	select * from board where bno = #{bno}
 	</select>
+	<update id="updateBoard">
+	update board set title = #{board.title}, content = #{board.content}, categoryno = #{board.categoryNo} where bno = #{board.bno}
+	</update>
+	<update id="updateBoardImg">
+	update board set title = #{board.title}, content = #{board.content}, categoryno = #{board.categoryNo}, etc = #{board.etc} where bno = #{board.bno}
+	</update>
+	<delete id="deleteBoard">
+	delete from board where bno = #{bno}
+	</delete>
+	
 	<update id="boardViewCnt">
 	update board set view = #{view} where bno = #{bno}
 	</update>
@@ -48,5 +58,4 @@
 	<insert id="regReply">
 	insert into reply (replyContent, replyDate, username, bno) values (#{reply.replyContent}, #{reply.replyDate}, #{reply.username}, #{reply.bno})
 	</insert>
-	
 </mapper>

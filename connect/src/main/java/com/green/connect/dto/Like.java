@@ -20,6 +20,4 @@ public class Like {
 		this.bno = bno;
 		this.likeState = likeState;
 	}
-	
-	
 }

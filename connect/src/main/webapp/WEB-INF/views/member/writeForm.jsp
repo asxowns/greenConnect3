@@ -30,9 +30,11 @@ section {
 
 	<main>
 		<section>
-			<p>카페 글쓰기</p>
-			<hr>
-			<form action="../member/registBoard" name="boardWriteForm" method="post" enctype="multipart/form-data">
+			<!-- 등록폼 -->
+			<c:if test="${boardDetail == null }">
+				<p>카페 글쓰기</p>
+				<hr>
+				<form action="../member/registBoard" name="boardWriteForm" method="post" enctype="multipart/form-data">
 				<select name="categoryNo">
 					<option value="none">게시판을 선택해 주세요.</option>
 					<c:forEach var="list" items="${categoryList }">
