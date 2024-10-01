@@ -19,4 +19,6 @@ public interface DmDao {
 //	내가 받은 쪽지
 	List<DM> myReciveDm(@Param("reciveUser") String reciveUser);
 	
+	DM dmDetail(@Param("dno") int dno);
+	
 }

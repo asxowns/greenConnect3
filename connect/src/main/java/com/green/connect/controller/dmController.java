@@ -59,4 +59,12 @@ public class dmController {
 		return dao.mySendDm(sendUser);
 	}
 
+	@GetMapping("/dmDetail")
+	public String dmDetail() {
+		
+		return "";
+	}
+	
+	
+	
 }
