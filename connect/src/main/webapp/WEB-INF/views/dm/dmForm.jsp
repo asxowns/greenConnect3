@@ -121,7 +121,7 @@ body {
 		</ul>
 	</div>
 
-	<form action="sendDm" method="POST">
+	<form action="/sendDm" method="POST">
 		<div class="reciveUser">
 			<h3>받는 사람</h3>
 			<p>
