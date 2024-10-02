@@ -216,7 +216,7 @@ table, tr, th, td {
 
 			<div class="boardList">
 				<ul>
-					<li><a href="/my/myPageMain">마이페이지 홈</a></li>
+					<li><a href="/my/myPageMain" id="mypageHome">마이페이지 홈</a></li>
 					<li><a href="#" id="myBoardList">내가 작성한 게시글</a></li>
 					<li><a href="#" id="myReplyList">내가 작성한 댓글</a></li>
 					<li><a href="#" id="myLikeBoardList">내가 좋아요한 게시글</a></li>
@@ -238,8 +238,10 @@ table, tr, th, td {
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 			
-			let levelno = ${user.levelno};
-			console.log(levelno);
+			let levelno = ${user.levelno};// 숫자 타입이므로 따옴표 불필요
+			let username = "${user.username}";// 문자열 타입이므로 따옴표 필요
+			console.log("levelno: " + levelno);
+			console.log("username: " + username);
 			
 			//등급 번호에따라 이름 주기
 			function displayLevel(){
@@ -264,7 +266,10 @@ table, tr, th, td {
 			
 			const mypageBoard = document.getElementById('mypageBoard');
 			
+			const mypageHome = document.getElementById("mypageHome");
 			const myBoardList = document.getElementById('myBoardList');
+			const myReplyList = document.getElementById("myReplyList");
+			const myLikeBoardList = document.getElementById("myLikeBoardList");
 			
 			const h1 = document.createElement("h1");
 			
@@ -278,6 +283,11 @@ table, tr, th, td {
 			myBoardList.addEventListener('click', ()=>{
 				mypageBoard.innerHTML = "<p>데이터를 불러오는 중...</p>";
 				
+				mypageHome.style.color = "#333";
+				myBoardList.style.color = "#0091DB";
+				myReplyList.style.color = "#333";
+				myLikeBoardList.style.color = "#333";
+				
 				const section = document.querySelector('section');
 				
 				h1.innerHTML = "내가 작성한 게시글";
@@ -285,7 +295,7 @@ table, tr, th, td {
 				//요소 앞부분에 추가 (h1을 mypageBoard앞에 추가)
 				section.insertBefore(h1, mypageBoard);
 				
-				fetch('/my/myBoardList?username=user1',{
+				fetch('/my/myBoardList?username=' + username,{
 					method: "GET"
 				})
 				.then(response => {
@@ -399,10 +409,13 @@ table, tr, th, td {
 			/* 내가 작성한 댓글 */
 			/* 내가 작성한 댓글 */
 			/* 내가 작성한 댓글 */
-			const myReplyList = document.getElementById("myReplyList");
-			
 			myReplyList.addEventListener('click', ()=>{
 				mypageBoard.innerHTML = "<p>데이터를 불러오는 중...</p>";
+				
+				mypageHome.style.color = "#333";
+				myBoardList.style.color = "#333";
+				myReplyList.style.color = "#0091DB";
+				myLikeBoardList.style.color = "#333";
 				
 				const section = document.querySelector('section');
 				
@@ -411,7 +424,7 @@ table, tr, th, td {
 				//요소 앞부분에 추가 (h1을 mypageBoard앞에 추가)
 				section.insertBefore(h1, mypageBoard);
 				
-				fetch('/my/myReplyList?username=user1',{
+				fetch('/my/myReplyList?username=' + username,{
 					method: "GET"
 				})
 				.then(response => {
@@ -524,10 +537,13 @@ table, tr, th, td {
 			/* 내가 좋아요한 게시글 */
 			/* 내가 좋아요한 게시글 */
 			/* 내가 좋아요한 게시글 */
-			const myLikeBoardList = document.getElementById('myLikeBoardList');
-			
 			myLikeBoardList.addEventListener('click', ()=>{
 				mypageBoard.innerHTML = "<p>데이터를 불러오는 중...</p>";
+				
+				mypageHome.style.color = "#333";
+				myBoardList.style.color = "#333";
+				myReplyList.style.color = "#333";
+				myLikeBoardList.style.color = "#0091DB";
 				
 				const section = document.querySelector('section');
 				
@@ -536,7 +552,7 @@ table, tr, th, td {
 				//요소 앞부분에 추가 (h1을 mypageBoard앞에 추가)
 				section.insertBefore(h1, mypageBoard);
 				
-				fetch('/my/myLikeBoardList?username=user1',{
+				fetch('/my/myLikeBoardList?username=' + username,{
 					method: "GET"
 				})
 				.then(response => {

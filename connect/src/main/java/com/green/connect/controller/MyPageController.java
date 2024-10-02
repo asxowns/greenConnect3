@@ -23,9 +23,6 @@ import com.green.connect.dto.User;
 public class MyPageController {
 	
 	@Autowired
-	private IUserDao userDao;
-	
-	@Autowired
 	private MypageDao mypageDao;
 	
 	@RequestMapping("/myPageMain")
@@ -37,6 +34,7 @@ public class MyPageController {
 		int myBoardCount = mypageDao.countByMyBoardList(username);
 		int myReplyCount = mypageDao.countByMyReplyList(username);
 		
+		model.addAttribute("username", username);
 		model.addAttribute("user", user);
 		model.addAttribute("myBoardCount", myBoardCount);
 		model.addAttribute("myReplyCount", myReplyCount);
