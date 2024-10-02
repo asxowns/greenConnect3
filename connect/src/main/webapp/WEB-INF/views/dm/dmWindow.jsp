@@ -201,6 +201,11 @@ table, tr, th, td {
 				const divBox = document.createElement('div');
 				divBox.classList.add("listBox");
 				
+				divBox.addEventListener("click", ()=>{
+					window.location.href= '/dmDetail?dno=' + list.dno;
+				});
+				
+				
 				// 유저 이미지 박스
 				const listImg = document.createElement("div");
 				const img = document.createElement("img");
@@ -282,6 +287,10 @@ table, tr, th, td {
 					const divBox = document.createElement('div');
 					divBox.classList.add("listBox");
 					
+					divBox.addEventListener("click", ()=>{
+						window.location.href= '/dmDetail?dno=' + list.dno;
+					});
+					
 					// 유저 이미지 박스
 					const listImg = document.createElement("div");
 					const img = document.createElement("img");
@@ -322,6 +331,8 @@ table, tr, th, td {
 					dmList.appendChild(divBox);
 				});
 			}
+			
+			
 	});
 	
 	

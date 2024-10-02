@@ -4,19 +4,23 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.green.connect.dao.DmDao">
 	
+	<!-- 쪽지 보내기 -->
 	<insert id="sendDm">
 		insert into dm (content, date, state, reciveUser, sendUser)
 		values (#{content}, #{date}, #{state}, #{reciveUser}, #{sendUser})
 	</insert>
 	
+	<!-- 보낸 쪽지 -->
 	<select id="mySendDm">
 		select * from dm where sendUser = #{sendUser}
 	</select>
 	
+	<!-- 받은 쪽지 -->
 	<select id="myReciveDm">
 		select * from dm where reciveUser = #{reciveUser}
 	</select>
 	
+	<!-- 쪽지 상세페이지 -->
 	<select id="dmDetail">
 		select * from dm where dno = #{dno}
 	</select>
