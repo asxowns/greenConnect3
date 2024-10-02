@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,6 +65,14 @@ section {
 	justify-content: space-between;
 	font-size: 12px;
 	margin-bottom: 8px;
+}
+.userState #levelZone{
+	justify-content:flex-start;
+	align-items:center;
+	gap:5px;	
+}
+.userState #levelZone img{
+	width:13px;
 }
 
 .userState p span {
@@ -171,22 +181,21 @@ table, tr, th, td {
 						<img src="">
 					</p>
 					<div class="nameBirth">
-						<h3>변지은</h3>
-						<p>1994.09.21</p>
+						<h3>${user.name}</h3>
+						<p>${user.birth}</p>
 					</div>
 				</div>
 				<div class="userState">
-					<p>
-						새싹<img src="">
+					<p id="levelZone">
 					</p>
 					<p>
 						방문<span>0</span>
 					</p>
 					<p>
-						내가 쓴 게시글<span>0</span>
+						내가 쓴 게시글<span>${myBoardCount }</span>
 					</p>
 					<p>
-						내가 쓴 댓글<span>0</span>
+						내가 쓴 댓글<span>${myReplyCount }</span>
 					</p>
 				</div>
 				<div class="funcInfo">
@@ -228,6 +237,30 @@ table, tr, th, td {
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
+			
+			let levelno = ${user.levelno};
+			console.log(levelno);
+			
+			//등급 번호에따라 이름 주기
+			function displayLevel(){
+			const levelZone = document.getElementById("levelZone");
+			const levelImg = document.createElement("img");
+				
+				if(levelno == 1){
+					levelZone.innerHTML = "새싹";
+					levelImg.src = "../resource/img/rank1.png";
+				}else if(levelno == 2){
+					levelZone.innerHTML = "나무";
+					levelImg.src = "../resource/img/rank2.png";
+				}else if(levelno == 3){
+					levelZone.innerHTML = "꽃나무";
+					levelImg.src = "../resource/img/rank2.png";
+				}
+				
+				levelZone.appendChild(levelImg);
+			}
+			
+			displayLevel();
 			
 			const mypageBoard = document.getElementById('mypageBoard');
 			

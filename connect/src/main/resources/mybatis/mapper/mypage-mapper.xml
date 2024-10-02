@@ -18,5 +18,20 @@
 	<select id="myLikeBoardList" resultType="com.green.connect.dto.Like">
 		select * from `like` where username = #{username}
 	</select>
+	
+	<!-- username으로 유저 정보 가져오기 -->
+	<select id="getByUsername">
+		select * from user where username = #{username}
+	</select>
+	
+	<!-- 내가 쓴 게시글 갯수 -->
+	<select id="countByMyBoardList">
+		select count(*) from board where username = #{username}
+	</select>
+	
+	<!-- 내가 쓴 댓글 갯수 -->
+	<select id="countByMyReplyList">
+		select count(*) from reply where username = #{username}
+	</select>
 
 </mapper>
