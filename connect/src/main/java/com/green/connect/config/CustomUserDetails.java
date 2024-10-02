@@ -1,5 +1,6 @@
 package com.green.connect.config;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -18,7 +19,14 @@ public class CustomUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// 사용자 권한 반환 
-		return null;
+		Collection<GrantedAuthority> collection = new ArrayList<>();
+	    collection.add(new GrantedAuthority() {
+	        @Override
+	        public String getAuthority() {
+	            return user.getRole(); // 사용자 역할을 반환
+	        }
+	    });
+	    return collection;
 	}
 
 	@Override
