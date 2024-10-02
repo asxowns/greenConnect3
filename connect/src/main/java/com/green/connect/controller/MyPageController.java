@@ -3,26 +3,43 @@ package com.green.connect.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.green.connect.dao.IUserDao;
 import com.green.connect.dao.MypageDao;
 import com.green.connect.dto.Board;
 import com.green.connect.dto.Like;
 import com.green.connect.dto.Reply;
+import com.green.connect.dto.User;
 
 @Controller
 @RequestMapping("/my")
 public class MyPageController {
 	
 	@Autowired
+	private IUserDao userDao;
+	
+	@Autowired
 	private MypageDao mypageDao;
 	
 	@RequestMapping("/myPageMain")
-	public String myPageMain() {
+	public String myPageMain(Model model) {
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		User user = mypageDao.getByUsername(username);
+		int myBoardCount = mypageDao.countByMyBoardList(username);
+		int myReplyCount = mypageDao.countByMyReplyList(username);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("myBoardCount", myBoardCount);
+		model.addAttribute("myReplyCount", myReplyCount);
 		
 		return "mypage/myPageMain";
 	}
