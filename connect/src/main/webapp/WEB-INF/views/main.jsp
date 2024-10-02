@@ -103,6 +103,11 @@ section {
 	color:#fff;
 	cursor:pointer;
 }
+
+#calendar {
+	margin: 50px;
+}
+
 </style>
 </head>
 <body>
@@ -162,7 +167,7 @@ section {
 		</aside>
 
 		<section>
-			<p>메인 컨텐츠</p>
+			<div id='calendar'></div>
 		</section>
 	</main>
 
@@ -170,6 +175,7 @@ section {
 		<%@include file="./about/footer.jsp"%>
 	</footer>
 
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 	
 	<!-- 알림창 스크립트 -->
 	<c:if test="${not empty msg}">
@@ -197,7 +203,48 @@ section {
 	                console.log(data);
 	            }
 	        });
+	    
+		
+	        const calendarEl = document.getElementById('calendar');
+	        const calendar = new FullCalendar.Calendar(calendarEl, {
+	            initialView: 'dayGridMonth',
+	            headerToolbar: {
+	                left: 'prev',
+	                center: 'title',
+	                right: 'next'
+	            },
+	            editable: true,
+	            dayMaxEvents: true,
+	            events: [],
+	        });
+			
+	     // 생일 데이터 가져오기
+	        fetch('/birthdays')
+	            .then(response => response.json()) // JSON으로 변환
+	            .then(data => {
+	                // 받아온 생일 데이터를 반복문으로 처리하여 이벤트 추가
+	                data.forEach(event => {
+	                    calendar.addEvent({
+	                        title: event.title, // 사용자 이름
+	                        start: event.start, // 생일 날짜
+	                        allDay: true // 하루 종일 이벤트로 설정
+	                    });
+	                });
+	            })
+	            .catch(error => console.error('Error fetching birthdays:', error));
+	     	
+	     // FullCalendar가 렌더링된 후, 이벤트를 콘솔에 출력합니다.
+	        calendar.on('eventsSet', function(events) {
+	            console.log("Events loaded:", events);
+	        });
+	        
+	        calendar.render(); // 캘린더 렌더링
 	    });
+		
+	
+		
+		
+	       
 
 	</script>
 </body>
