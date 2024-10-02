@@ -3,13 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=400px, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Direct Message</title>
 <style>
 * {
 	margin: 0;
 	padding: 0;
+}
+body{
+	overflow-y: scroll; /* 항상 세로 스크롤바 표시 */
+    scrollbar-width: thin; /* Firefox */
+    width: 100%; /* 스크롤바 너비(약 20px) 고려 */
+    margin: 0 auto; /* 중앙 정렬 */
+}
+/* WebKit 브라우저 (Chrome, Safari 등)를 위한 스크롤바 스타일 */
+body::-webkit-scrollbar {
+    width: 2px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
 }
 
 ul {
