@@ -643,7 +643,13 @@ table, tr, th, td {
 
 		});
 		
-		
+		function openDmWindow() {
+			// 새 창을 엽니다. 'dmWindow'는 창의 이름입니다.
+			// 'width=400,height=600'는 창의 크기를 지정합니다. 필요에 따라 조절하세요.
+			window.open('../dmWindow', 'dmWindow',
+					'width=416,height=600,resizable=yes,scrollbars=yes');
+			return false; // 기본 링크 동작을 방지합니다.
+		}
 		
 		
 		

@@ -135,13 +135,15 @@ table, tr, th, td {
 		
 	document.addEventListener("DOMContentLoaded", ()=>{
 		
+		let username = "${username}";
+		
 		const dmList = document.getElementById("dmList");
 		const reciveDmBtn = document.getElementById("reciveDm-btn");
 		const sendDmBtn = document.getElementById("sendDm-btn");
 		
 		dmList.innerHTML = "목록 불러 오는중...";
 		
-		fetch("/myReciveDm?reciveUser=user1",{
+		fetch("/myReciveDm?reciveUser=" + username,{
 			method:"GET"
 		})
 		.then(response =>{
@@ -172,7 +174,7 @@ table, tr, th, td {
 			/* 받은 쪽지 */
 			dmList.innerHTML = "목록 불러 오는중...";
 			
-			fetch("/myReciveDm?reciveUser=user1",{
+			fetch("/myReciveDm?reciveUser=" + username,{
 				method:"GET"
 			})
 			.then(response =>{
@@ -258,7 +260,7 @@ table, tr, th, td {
 				
 				dmList.innerHTML = "목록 불러 오는중...";
 				
-				fetch("/mySendDm?sendUser=user1",{
+				fetch("/mySendDm?sendUser=" + username,{
 					method:"GET"
 				})
 				.then(response =>{
@@ -299,10 +301,10 @@ table, tr, th, td {
 					// 유저 텍스트 박스
 					const listText = document.createElement("div");
 					
-					// 보낸 유저 이름
-					//const tdSendUser = document.createElement("h3");
-					//tdSendUser.textContent = list.sendUser;
-					//divBox.appendChild(tdSendUser);
+					// 받은 유저 이름
+					const tdReciveUser = document.createElement("h3");
+					tdReciveUser.textContent = list.reciveUser;
+					divBox.appendChild(tdReciveUser);
 					
 					// 쪽지 내용
 					const tdContent = document.createElement("h3");
@@ -321,7 +323,7 @@ table, tr, th, td {
 					tdDate.style.paddingTop = "5px";
 					tdDate.classList.add("dmDate");
 					
-					//listText.appendChild(tdSendUser);
+					listText.appendChild(tdReciveUser);
 					listText.appendChild(tdContent);
 					listText.appendChild(tdDate);
 					

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,11 @@ public class dmController {
 	private DmDao dao;
 
 	@RequestMapping("/dmWindow")
-	public String dmWindow() {
+	public String dmWindow(Model model) {
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		model.addAttribute("username", username);
 
 		return "dm/dmWindow";
 	}
@@ -34,15 +39,15 @@ public class dmController {
 
 	@RequestMapping("/sendDm")
 	public String sendDm(DM dm) {
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
 		dm.setDate(new Date());
-		dm.setState(1);
-		
-		dm.setSendUser("user1");
+		dm.setSendUser(username);
 
 		dao.sendDm(dm);
 
-		return "dm/dmWindow";
+		return "redirect:/dmWindow";
 	}
 	
 	
