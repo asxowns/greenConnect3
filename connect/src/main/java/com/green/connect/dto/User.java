@@ -1,5 +1,6 @@
 package com.green.connect.dto;
 
+import java.sql.Date;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +21,7 @@ public class User implements UserDetails {
 	private String role;
 	private String email;
 	private String tel;
-	private String birth;
+	private Date birth;
 	
 	private int levelno;
 	
