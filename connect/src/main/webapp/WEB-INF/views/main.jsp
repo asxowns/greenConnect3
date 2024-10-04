@@ -108,6 +108,45 @@ section {
 	margin: 50px;
 }
 
+.boardSections {
+	display: flex;
+	flex-wrap: wrap; /* flex 요소들이 여러 줄로 배치되도록 설정 */
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.boardSection {
+	width: 45%; 
+	border: 1px solid #ccc;
+	padding: 20px;
+	margin: 10px 20px 10px 20px; /* 각 섹션 간의 세로 여백 */
+	box-sizing: border-box;
+}
+
+.boardSection h3 {
+	font-size: 18px;
+	color: #333;
+	margin-bottom: 15px;
+}
+
+.boardSection ul {
+	list-style: none;
+	padding: 0;
+}
+
+.boardSection ul li {
+	margin-bottom: 10px;
+}
+
+.boardSection ul li a {
+	color: #0091DB;
+	text-decoration: none;
+}
+
+.boardSection ul li a:hover {
+	text-decoration: underline;
+}
+
 </style>
 </head>
 <body>
@@ -168,7 +207,39 @@ section {
 
 		<section>
 			<div id='calendar'></div>
+			
+			<div class="boardSections">
+				<div class="boardSection" id="freeBoard">
+					<h3>자유게시판</h3>
+					<ul id="freeBoardList">
+						<!-- 자유게시판 글 목록이 동적으로 추가됩니다 -->
+					</ul>
+				</div>
+				<div class="boardSection" id="jobReviewBoard">
+					<h3>취업/면접 후기</h3>
+					<ul id="jobReviewBoardList">
+						<!-- 취업/면접 후기 게시판 글 목록이 동적으로 추가됩니다 -->
+					</ul>
+				</div>
+				<div class="boardSection" id="workReviewBoard">
+					<h3>직장 후기</h3>
+					<ul id="workReviewBoardList">
+						<!-- 직장 후기 게시판 글 목록이 동적으로 추가됩니다 -->
+					</ul>
+				</div>
+				<div class="boardSection" id="tipBoard">
+					<h3>꿀팁 게시판</h3>
+					<ul id="tipBoardList">
+						<!-- 꿀팁 게시판 글 목록이 동적으로 추가됩니다 -->
+					</ul>
+				</div>
+			</div>
+			
 		</section>
+		
+		
+		
+		
 	</main>
 
 	<footer>
@@ -239,6 +310,50 @@ section {
 	        });
 	        
 	        calendar.render(); // 캘린더 렌더링
+	        
+	        
+	        //게시판 데이터
+	        fetch("/getBoardPosts")
+	        	.then(response => response.json())
+	        	.then(data => {
+	        		console.log(data);
+	        		//자유게시판
+	        		const freeBoardList = document.getElementById("freeBoardList");
+	        		data.freeBoard.forEach(board => {
+	        			console.log(board.bno);
+	        			const li = document.createElement("li");
+	        			li.innerHTML = "<a href='/member/boardDetail?bno=" + board.bno + "'>" + board.title + "</a>";
+	        			freeBoardList.appendChild(li);
+	        		});
+	        		
+	        		//취업면접게시판
+	        		const jobReviewBoardList = document.getElementById("jobReviewBoardList");
+	        		data.jobBoard.forEach(board => {
+	        			console.log(board);
+	        			const li = document.createElement("li");
+	                    li.innerHTML = "<a href='/member/boardDetail?bno=" + board.bno + "'>" + board.title + "</a>";
+	                    jobReviewBoardList.appendChild(li);
+	        		});
+	        		
+	        		//직장후기게시판
+	        		const workReviewBoardList = document.getElementById("workReviewBoardList");
+	        		data.workBoard.forEach(board => {
+	        			console.log(board);
+	        			const li = document.createElement("li");
+	                    li.innerHTML = "<a href='/member/boardDetail?bno=" + board.bno + "'>" + board.title + "</a>";
+	                    workReviewBoardList.appendChild(li);
+	        		});
+	        		
+	        		//꿀팁게시판
+	        		const tipBoardList = document.getElementById("tipBoardList");
+	        		data.tipBoard.forEach(board => {
+	        			console.log(board);
+	        			const li = document.createElement("li");
+	                    li.innerHTML = "<a href='/member/boardDetail?bno=" + board.bno + "'>" + board.title + "</a>";
+	                    tipBoardList.appendChild(li);
+	        		});
+	        	})
+	        	.catch(error => console.error('Error fetching board posts:', error));
 	    });
 		
 	
