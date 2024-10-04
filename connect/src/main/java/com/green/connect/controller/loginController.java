@@ -23,7 +23,7 @@ public class loginController {
     BCryptPasswordEncoder passwordEncoder; // 비밀번호 인코더 주입
 
 	
-	@RequestMapping("/loginForm")
+	//@RequestMapping("/loginForm")
 	public String loginForm() {
 		
 		return "loginForm";
@@ -37,11 +37,14 @@ public class loginController {
 
         if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
             // 로그인 실패
-            return "loginForm"; // 다시 로그인 페이지로 리다이렉트
+        	session.setAttribute("loginError", "아이디 또는 비밀번호가 잘못되었습니다.");
+            return "redirect:/"; 
         }
 
-        //
-        SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, null, user.getAuthorities()));
+     // Spring Security에 사용자 인증 설정
+        SecurityContextHolder.getContext().setAuthentication(
+            new UsernamePasswordAuthenticationToken(username, null, user.getAuthorities())
+        );
         return "redirect:/"; // 메인 페이지로 리다이렉트
 	}
 	
