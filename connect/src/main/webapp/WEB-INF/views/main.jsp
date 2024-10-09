@@ -25,7 +25,6 @@ aside {
 section {
 	width: 880px;
 	min-height: 800px;
-	border: 1px solid #ccc;
 }
 
 .aboutUser {
@@ -163,7 +162,6 @@ section {
 }
 
 #calendar {
-	margin: 50px;
 	width: 100%; /* 너비 설정 */
     height: auto; /* 높이 자동 */
 }
@@ -171,17 +169,17 @@ section {
 .boardSections {
 	display: flex;
 	flex-wrap: wrap; /* flex 요소들이 여러 줄로 배치되도록 설정 */
-	justify-content: center;
+	justify-content: space-between;
 	margin-top: 50px;
 	margin-bottom: 30px;
+	gap: 50px;
 }
 
 .boardSection {
-	width: 45%;
+	width: 47%;
 	height: 200px;
 	border: 1px solid #ccc;
 	padding: 20px;
-	margin: 10px 20px 10px 20px; /* 각 섹션 간의 세로 여백 */
 	box-sizing: border-box;
 	overflow-y: auto; /* 내용이 넘칠 경우 스크롤 생성 */
 }
@@ -330,6 +328,11 @@ section {
     color: #0056b3; /* 마우스 오버 시 링크 색상 */
     text-decoration: none; /* 마우스 오버 시 밑줄 제거 */
 }
+
+section article{
+	border: 1px solid #ccc;
+	padding: 50px;
+}
 </style>
 </head>
 <body>
@@ -413,7 +416,9 @@ section {
 
 		<section>
 		<sec:authorize access="isAuthenticated()">
-			<div id='calendar'></div>
+			<article>
+				<div id='calendar'></div>			
+			</article>
 
 			<div class="boardSections">
 				<div class="boardSection" id="freeBoard">
