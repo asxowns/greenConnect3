@@ -406,10 +406,10 @@ section article{
 
 			<div class="boardList">
 				<ul>
-					<li><a href="#">자유게시판</a></li>
-					<li><a href="#">취업/면접 후기</a></li>
-					<li><a href="#">직장 후기</a></li>
-					<li><a href="#">꿀팁 게시판</a></li>
+					<li><a href="/member/boardList?categoryNo=1">자유게시판</a></li>
+					<li><a href="/member/boardList?categoryNo=2">취업/면접 후기</a></li>
+					<li><a href="/member/boardList?categoryNo=3">직장 후기</a></li>
+					<li><a href="/member/boardList?categoryNo=4">꿀팁 게시판</a></li>
 				</ul>
 			</div>
 		</aside>
